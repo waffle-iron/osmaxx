@@ -1,0 +1,6 @@
+{
+    "cachedir": "/data/imposm3/cache",
+    "mapping": "mapping_all.json",
+    "connection": "postgis://gis:gis@imposm3_db/gis",
+    "srid": 4326
+}

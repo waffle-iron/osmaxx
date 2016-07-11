@@ -1,0 +1,223 @@
+# TODO:
+# - write slq statement for z_order calculation in the same way as style.lua
+# - use booleans for boolean values, ie. {key: bridge, name: is_bridge, type: bool} and rewrite our queries
+# - extract
+
+tags:
+  load_all: true
+  exclude: [created_by, source, "tiger:*"]
+tables:
+  point:
+    type: point
+    mapping:
+      __any__: [__any__]
+    columns:
+      - {name: osm_id, type: id}
+      - {name: geometry, type: geometry}
+      - {name: tags, type: hstore_tags}
+      - {key: access, name: access, type: string}
+      - {key: "addr:city", name: "addr:city", type: string}
+      - {key: "addr:housenumber", name: "addr:housenumber", type: string}
+      - {key: "addr:interpolation", name: "addr:interpolation", type: string}
+      - {key: "addr:place", name: "addr:place", type: string}
+      - {key: "addr:postcode", name: "addr:postcode", type: string}
+      - {key: "addr:street", name: "addr:street", type: string}
+      - {key: "addr:country", name: "addr:country", type: string}
+      - {key: admin_level, name: admin_level, type: string}
+      - {key: aerialway, name: aerialway, type: string}
+      - {key: aeroway, name: aeroway, type: string}
+      - {key: amenity, name: amenity, type: string}
+      - {key: area, name: area, type: string}
+      - {key: barrier, name: barrier, type: string}
+      - {key: brand, name: brand, type: string}
+      - {key: bridge, name: bridge, type: string}
+      - {key: boundary, name: boundary, type: string}
+      - {key: building, name: building, type: string}
+      - {key: bus, name: bus, type: string}
+      - {key: "contact:phone", name: "contact:phone", type: string}
+      - {key: cuisine, name: cuisine, type: string}
+      - {key: denomination, name: denomination, type: string}
+      - {key: drinkable, name: drinkable, type: string}
+      - {key: ele, name: ele, type: string}
+      - {key: emergency, name: emergency, type: string}
+      - {key: entrance, name: entrance, type: string}
+      - {key: foot, name: foot, type: string}
+      - {key: frequency, name: frequency, type: string}
+      - {key: "generator:source", name: "generator:source", type: string}
+      - {key: height, name: height, type: string}
+      - {key: highway, name: highway, type: string}
+      - {key: historic, name: historic, type: string}
+      - {key: information, name: information, type: string}
+      - {key: junction, name: junction, type: string}
+      - {key: landuse, name: landuse, type: string}
+      - {key: layer, name: layer, type: string}
+      - {key: leisure, name: leisure, type: string}
+      - {key: man_made, name: man_made, type: string}
+      - {key: maxspeed, name: maxspeed, type: string}
+      - {key: military, name: military, type: string}
+      - {key: name, name: name, type: string}
+      - {key: int_name, name: int_name, type: string}
+      - {key: "name:en", name: "name:en", type: string}
+      - {key: "name:de", name: "name:de", type: string}
+      - {key: "name:fr", name: "name:fr", type: string}
+      - {key: "name:es", name: "name:es", type: string}
+      - {key: "natural", name: "natural", type: string}
+      - {key: office, name: office, type: string}
+      - {key: oneway, name: oneway, type: string}
+      - {key: opening_hours, name: opening_hours, type: string}
+      - {key: operator, name: operator, type: string}
+      - {key: phone, name: phone, type: string}
+      - {key: power, name: power, type: string}
+      - {key: power_source, name: power_source, type: string}
+      - {key: parking, name: parking, type: string}
+      - {key: place, name: place, type: string}
+      - {key: population, name: population, type: string}
+      - {key: public_transport, name: public_transport, type: string}
+      - {key: "recycling:glass", name: "recycling:glass", type: string}
+      - {key: "recycling:paper", name: "recycling:paper", type: string}
+      - {key: "recycling:clothes", name: "recycling:clothes", type: string}
+      - {key: "recycling:scrap_metal", name: "recycling:scrap_metal", type: string}
+      - {key: railway, name: railway, type: string}
+      - {key: ref, name: ref, type: string}
+      - {key: religion, name: religion, type: string}
+      - {key: route, name: route, type: string}
+      - {key: service, name: service, type: string}
+      - {key: shop, name: shop, type: string}
+      - {key: sport, name: sport, type: string}
+      - {key: tourism, name: tourism, type: string}
+      - {key: "tower:type", name: "tower:type", type: string}
+      - {key: traffic_calming, name: traffic_calming, type: string}
+      - {key: train, name: train, type: string}
+      - {key: tram, name: tram, type: string}
+      - {key: tunnel, name: tunnel, type: string}
+      - {key: type, name: type, type: string}
+      - {key: vending, name: vending, type: string}
+      - {key: voltage, name: voltage, type: string}
+      - {key: water, name: water, type: string}
+      - {key: waterway, name: waterway, type: string}
+      - {key: website, name: website, type: string}
+      - {key: wetland, name: wetland, type: string}
+      - {key: width, name: width, type: string}
+      - {key: wikipedia, name: wikipedia, type: string}
+      - {key: z_order, name: z_order, type: integer}
+  line:
+    type: linestring
+    mapping:
+      __any__: [__any__]
+    columns:
+      - {name: id, type: id}
+      - {name: geometry, type: geometry}
+      - {name: tags, type: hstore_tags}
+      - {key: access, name: access, type: string}
+      - {key: "addr:city", name: "addr:city", type: string}
+      - {key: "addr:housenumber", name: "addr:housenumber", type: string}
+      - {key: "addr:interpolation", name: "addr:interpolation", type: string}
+      - {key: "addr:place", name: "addr:place", type: string}
+      - {key: "addr:postcode", name: "addr:postcode", type: string}
+      - {key: "addr:street", name: "addr:street", type: string}
+      - {key: "addr:country", name: "addr:country", type: string}
+      - {key: admin_level, name: admin_level, type: string}
+      - {key: aerialway, name: aerialway, type: string}
+      - {key: aeroway, name: aeroway, type: string}
+      - {key: amenity, name: amenity, type: string}
+      - {key: area, name: area, type: string}
+      - {key: barrier, name: barrier, type: string}
+      - {key: brand, name: brand, type: string}
+      - {key: bridge, name: bridge, type: string}
+      - {key: boundary, name: boundary, type: string}
+      - {key: building, name: building, type: string}
+      - {key: bus, name: bus, type: string}
+      - {key: "contact:phone", name: "contact:phone", type: string}
+      - {key: cuisine, name: cuisine, type: string}
+      - {key: denomination, name: denomination, type: string}
+      - {key: drinkable, name: drinkable, type: string}
+      - {key: emergency, name: emergency, type: string}
+      - {key: entrance, name: entrance, type: string}
+      - {key: foot, name: foot, type: string}
+      - {key: frequency, name: frequency, type: string}
+      - {key: "generator:source", name: "generator:source", type: string}
+      - {key: height, name: height, type: string}
+      - {key: highway, name: highway, type: string}
+      - {key: historic, name: historic, type: string}
+      - {key: information, name: information, type: string}
+      - {key: junction, name: junction, type: string}
+      - {key: landuse, name: landuse, type: string}
+      - {key: layer, name: layer, type: string}
+      - {key: leisure, name: leisure, type: string}
+      - {key: man_made, name: man_made, type: string}
+      - {key: maxspeed, name: maxspeed, type: string}
+      - {key: military, name: military, type: string}
+      - {key: name, name: name, type: string}
+      - {key: int_name, name: int_name, type: string}
+      - {key: "name:en", name: "name:en", type: string}
+      - {key: "name:de", name: "name:de", type: string}
+      - {key: "name:fr", name: "name:fr", type: string}
+      - {key: "name:es", name: "name:es", type: string}
+      - {key: "natural", name: "natural", type: string}
+      - {key: office, name: office, type: string}
+      - {key: oneway, name: oneway, type: string}
+      - {key: opening_hours, name: opening_hours, type: string}
+      - {key: operator, name: operator, type: string}
+      - {key: phone, name: phone, type: string}
+      - {key: power, name: power, type: string}
+      - {key: power_source, name: power_source, type: string}
+      - {key: parking, name: parking, type: string}
+      - {key: place, name: place, type: string}
+      - {key: population, name: population, type: string}
+      - {key: public_transport, name: public_transport, type: string}
+      - {key: "recycling:glass", name: "recycling:glass", type: string}
+      - {key: "recycling:paper", name: "recycling:paper", type: string}
+      - {key: "recycling:clothes", name: "recycling:clothes", type: string}
+      - {key: "recycling:scrap_metal", name: "recycling:scrap_metal", type: string}
+      - {key: railway, name: railway, type: string}
+      - {key: ref, name: ref, type: string}
+      - {key: religion, name: religion, type: string}
+      - {key: route, name: route, type: string}
+      - {key: service, name: service, type: string}
+      - {key: shop, name: shop, type: string}
+      - {key: sport, name: sport, type: string}
+      - {key: tourism, name: tourism, type: string}
+      - {key: "tower:type", name: "tower:type", type: string}
+      - {key: tracktype, name: tracktype, type: string}
+      - {key: traffic_calming, name: traffic_calming, type: string}
+      - {key: train, name: train, type: string}
+      - {key: tram, name: tram, type: string}
+      - {key: tunnel, name: tunnel, type: string}
+      - {key: type, name: type, type: string}
+      - {key: vending, name: vending, type: string}
+      - {key: voltage, name: voltage, type: string}
+      - {key: water, name: water, type: string}
+      - {key: waterway, name: waterway, type: string}
+      - {key: website, name: website, type: string}
+      - {key: wetland, name: wetland, type: string}
+      - {key: width, name: width, type: string}
+      - {key: wikipedia, name: wikipedia, type: string}
+      - {key: z_order, name: z_order, type: integer}
+      - {key: way_area, name: way_area, type: string}
+  addr:interpolated:
+    fields:
+    - name: osm_id
+      type: id
+    - name: geometry
+      type: geometry
+    - key: name
+      name: name
+      type: string
+    - name: type
+      type: mapping_value
+    - key: addr:street
+      name: addr:street
+      type: string
+    - key: addr:postcode
+      name: addr:postcode
+      type: string
+    - key: addr:city
+      name: addr:city
+      type: string
+    - key: addr:inclusion
+      name: addr:inclusion
+      type: string
+    mapping:
+      addr:interpolation:
+      - __any__
+    type: linestring

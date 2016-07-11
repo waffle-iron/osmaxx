@@ -160,6 +160,50 @@ services:
       driver: "json-file"
       options:
         max-size: 50k
+  imposm3:
+    # to limit scaling to exactly 1, we need to specify the container name
+    container_name: imposm3
+    build:
+      dockerfile: Dockerfile
+      context: imposm3
+    volumes:
+      - ./imposm3/data/:/data
+    depends_on:
+      - imposm3_db
+    networks:
+      - osm-world-internal
+    command: >
+      sh -c '
+      echo "$${DBHOST}:5432:$${POSTGRES_DB}:$${POSTGRES_USER}:$${POSTGRES_PASSWORD}" > /root/.pgpass &&
+      chmod 0600 /root/.pgpass &&
+      imposm3 import -config config.json -read /data/argentina-latest.osm.pbf -write -diff -overwritecache &&
+      imposm3 import -config config.json -deployproduction'
+    links:
+      - "imposm3_db:imposm3_db"
+    environment:
+      - DBHOST=imposm3_db
+      - POSTGRES_DB=gis
+      - POSTGRES_USER=gis
+      - POSTGRES_PASSWORD=gis
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 50k
+  imposm3_db:
+    container_name: imposm3_db
+    image: geometalab/postgis:9.5
+    command: postgres -B 12GB -F -N 512 -S 20GB --max_wal_size=5GB
+    environment:
+      - POSTGRES_DB=gis
+      - POSTGRES_USER=gis
+      - POSTGRES_PASSWORD=gis
+    networks:
+      - osm-world-internal
+      - osm-world
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 50k
   ##### WORLD-DB END ########
   ##### OSM-BOUNDARIES START ######
   osmboundaries-database:

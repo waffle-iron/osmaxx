@@ -5,3 +5,4 @@ rq-dashboard/
 
 .*
 !.git
+*.pbf

@@ -92,3 +92,9 @@ web_frontend/src/
 # ignore commonly used location of python virtualenv
 .venv/
 *.log
+
+# generally exclude the sometimes very large pbfs
+*.pbf
+cache/
+!tests/test_data/osm/monaco-latest.osm.pbf
+!tests/inside_worker_test/dumps/pbf/monaco/monaco-latest.osm.pbf
